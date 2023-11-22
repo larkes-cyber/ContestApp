@@ -40,44 +40,44 @@ class MainActivity : ComponentActivity() {
 
             val context = LocalContext.current
 
-            val url = "https://joy1.videvo.net/videvo_files/video/free/2019-11/large_watermarked/190301_1_25_11_preview.mp4"
+            val url = "http://192.168.1.161:8080/user/get_audio/video.mp4"
 
             val audioUrl = "http://192.168.1.161:8080/user/get_audio"
 
-            LaunchedEffect(Unit){
-                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
-
-                mediaPlayer.setDataSource(audioUrl)
-
-                mediaPlayer.prepare()
-
-                mediaPlayer.start()
-            }
-
-
-//            val exoPlayer = remember {
-//                ExoPlayer.Builder(context).build().apply {
-//                    setMediaItem(MediaItem.fromUri(Uri.parse(url)))
-//                    prepare()
-//                    play()
-//                }
+//            LaunchedEffect(Unit){
+//                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
+//
+//                mediaPlayer.setDataSource(audioUrl)
+//
+//                mediaPlayer.prepare()
+//
+//                mediaPlayer.start()
 //            }
+
+
+            val exoPlayer = remember {
+                ExoPlayer.Builder(context).build().apply {
+                    setMediaItem(MediaItem.fromUri(Uri.parse(url)))
+                    prepare()
+                    play()
+                }
+            }
 
             MyApplicationTheme {
                 Text("dfgfdfg")
-//                AndroidView(
-//                    factory = { context ->
-//                        StyledPlayerView(context).apply {
-//                            player = exoPlayer
-//                        }
-//                    },
-//                    modifier = Modifier.fillMaxSize()
-//                )
+                AndroidView(
+                    factory = { context ->
+                        StyledPlayerView(context).apply {
+                            player = exoPlayer
+                        }
+                    },
+                    modifier = Modifier.fillMaxSize()
+                )
             }
 
-//            DisposableEffect(Unit) {
-//                onDispose { exoPlayer.release() }
-//            }
+            DisposableEffect(Unit) {
+                onDispose { exoPlayer.release() }
+            }
         }
     }
 }
