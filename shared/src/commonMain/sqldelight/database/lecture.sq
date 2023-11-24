@@ -1,0 +1,36 @@
+CREATE TABLE lectureEntity(
+    id TEXT NOT NULL PRIMARY KEY,
+    descr TEXT NOT NULL,
+    time INTEGER NOT NULL,
+    isFavorite INTEGER AS Boolean DEFAULT NULL,
+    title TEXT NOT NULL,
+    shortDescr TEXT NOT NULL,
+    author TEXT NOT NULL,
+    subject TEXT NOT NULL
+);
+
+insertLecture:
+INSERT OR REPLACE
+INTO `lectureEntity`(
+    id,
+    descr,
+    time,
+    isFavorite,
+    title,
+    shortDescr,
+    author,
+    subject
+)VALUES(?,?,?,?,?,?,?,?);
+
+getLectures:
+SELECT *
+FROM lectureEntity;
+
+getLectureById:
+SELECT *
+FROM lectureEntity
+WHERE id = ?;
+
+deleteLecture:
+DELETE FROM `lectureEntity`
+WHERE id = ?;

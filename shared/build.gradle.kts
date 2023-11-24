@@ -61,7 +61,7 @@ kotlin {
 
 sqldelight{
     database("ContestDatabase"){
-        packageName = "com.example.coffeeshop.database"
+        packageName = "com.example.contestapp.database"
         sourceFolders = listOf("sqldelight")
         linkSqlite = true
     }

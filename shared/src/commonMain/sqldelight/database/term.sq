@@ -1,0 +1,24 @@
+CREATE TABLE termEntity(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    explanation TEXT NOT NULL,
+    lectureId TEXT NOT NULL
+);
+
+insertTerm:
+INSERT OR REPLACE
+INTO `termEntity`(
+    id,
+    title,
+    explanation,
+    lectureId
+)VALUES(?,?,?,?);
+
+getTermsByLectureId:
+SELECT *
+FROM termEntity
+WHERE lectureId = ?;
+
+deleteTerm:
+DELETE FROM `termEntity`
+WHERE id = ?;
