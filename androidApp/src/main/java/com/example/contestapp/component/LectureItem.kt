@@ -67,6 +67,10 @@ fun LectureItem(
     Card(
         modifier = modifier.combinedClickable(
             onClick = {
+                      if(!showFullCard){
+                          onClick()
+                          return@combinedClickable
+                      }
                       if(showFullCard){
                           showFullCard = false
                       }

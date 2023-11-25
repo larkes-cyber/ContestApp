@@ -89,7 +89,7 @@ fun LecturesScreen(
                 viewModel.getLectureImage(id, state)
             }, modifier = Modifier
                 .fillMaxWidth()){
-
+                navController.navigate(Screen.LectureDetailScreen.withArgs(item.id))
             }
             Spacer(modifier = Modifier.height(6.dp))
         }
