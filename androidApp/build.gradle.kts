@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
+    id ("kotlin-kapt")
+    id ("com.google.dagger.hilt.android")
 }
 
 android {
@@ -42,11 +44,17 @@ dependencies {
     implementation(projects.shared)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
-    implementation(libs.compose.material3)
     implementation(libs.androidx.activity.compose)
     debugImplementation(libs.compose.ui.tooling)
+    implementation("androidx.compose.material:material:1.5.4")
     implementation("com.google.android.exoplayer:exoplayer:2.18.7")
     implementation("io.coil-kt:coil-compose:2.5.0")
-
+    implementation ("androidx.navigation:navigation-compose:2.7.5")
+    implementation("io.insert-koin:koin-core:3.3.3")
+//Dagger - Hilt
+    implementation ("androidx.navigation:navigation-compose:2.7.5")
+    implementation ("com.google.dagger:hilt-android:2.44")
+    kapt ("com.google.dagger:hilt-compiler:2.44")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
 
 }

@@ -9,6 +9,7 @@ import com.example.contestapp.resource.Constants.API_URL
 import io.ktor.client.HttpClient
 import io.ktor.client.request.forms.MultiPartFormDataContent
 import io.ktor.client.request.forms.formData
+import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
@@ -44,6 +45,9 @@ class LectureRemoteDataSourceImpl(
                 )
             )
         }
+
+        println(response.bodyAsText())
+
         return Json.decodeFromString(response.bodyAsText())
     }
 
@@ -67,7 +71,7 @@ class LectureRemoteDataSourceImpl(
     }
 
     override suspend fun getImage(id: String): ByteArray {
-        val response = httpClient.post(GET_IMAGE_URL){
+        val response = httpClient.get(GET_IMAGE_URL){
             url {
                 parameters.append("id", id)
             }

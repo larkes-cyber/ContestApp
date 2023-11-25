@@ -6,6 +6,8 @@ import com.example.contestapp.data.source.local.LectureLocalDataSource
 import com.example.contestapp.data.source.local.LectureLocalDataSourceImpl
 import com.example.contestapp.data.source.local.TermLocalDataSource
 import com.example.contestapp.data.source.local.TermLocalDataSourceImpl
+import com.example.contestapp.data.source.remote.LectureRemoteDataSource
+import com.example.contestapp.data.source.remote.LectureRemoteDataSourceImpl
 import com.example.contestapp.database.ContestDatabase
 import com.example.contestapp.domain.model.Lecture
 import com.example.contestapp.domain.repository.LectureRepository
@@ -27,7 +29,8 @@ fun initKoin(
             single { database }
             single<LectureLocalDataSource> { LectureLocalDataSourceImpl(get()) }
             single<TermLocalDataSource> { TermLocalDataSourceImpl(get()) }
-            single<LectureRepository> { LectureRepositoryImpl(get(), get()) }
+            single<LectureRemoteDataSource> { LectureRemoteDataSourceImpl(get()) }
+            single<LectureRepository> { LectureRepositoryImpl(get(), get(), get()) }
             single<TermRepository> { TermRepositoryImpl(get()) }
         }
     )
