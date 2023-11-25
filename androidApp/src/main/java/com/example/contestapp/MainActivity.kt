@@ -16,6 +16,8 @@ import androidx.navigation.navArgument
 import com.example.contestapp.navigation.screen.Screen
 import com.example.contestapp.screen.add_lecture_screen.AddLectureScreen
 import com.example.contestapp.screen.add_lecture_screen.AddLectureViewModel
+import com.example.contestapp.screen.glossary_screen.GlossariyScreen
+import com.example.contestapp.screen.glossary_screen.GlossariyViewModel
 import com.example.contestapp.screen.lecture_detail_screen.LectureDetailScreen
 import com.example.contestapp.screen.lecture_detail_screen.LectureDetailViewModel
 import com.example.contestapp.screen.lectures_screen.LecturesScreen
@@ -63,6 +65,18 @@ class MainActivity : ComponentActivity() {
                         val id = entry.arguments!!.getString("id")
                         val viewModel:LectureDetailViewModel = hiltViewModel()
                         LectureDetailScreen(navController = navController, viewModel = viewModel, id = id!!)
+                    }
+                    composable(
+                        Screen.GlossariyScreen.route + "/{id}",
+                        arguments = listOf(
+                            navArgument("id"){
+                                type = NavType.StringType
+                                defaultValue = "none"
+                            }
+                        )){entry ->
+                        val id = entry.arguments!!.getString("id")
+                        val viewModel:GlossariyViewModel = hiltViewModel()
+                        GlossariyScreen(navController = navController, viewModel = viewModel, id = id!!)
                     }
                 }
             }

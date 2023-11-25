@@ -110,6 +110,7 @@ fun AddLectureScreen(
                 text = Constants.ADD_LECTURE_TITLE,
                 fontSize = 23.sp,
                 fontWeight = FontWeight.SemiBold,
+                color = AppTheme.colors.title,
                 modifier = Modifier.align(Alignment.Center)
             )
 

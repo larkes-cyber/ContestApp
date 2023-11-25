@@ -150,7 +150,7 @@ fun LectureDetailScreen(
                 isIconActive = false,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                
+                navController.navigate(Screen.GlossariyScreen.withArgs(id))
             }
             Spacer(modifier = Modifier.height(16.dp))
             if(lectureDetailUIState.lecture != null){
