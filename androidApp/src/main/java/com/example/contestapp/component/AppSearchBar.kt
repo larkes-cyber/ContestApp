@@ -2,6 +2,7 @@ package com.example.contestapp.component
 
 import AppTheme
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -74,18 +75,18 @@ fun AppSearchBar(
             )
         }
         Row(horizontalArrangement = Arrangement.spacedBy(26.dp)) {
-            Icon(
-                painterResource(id = R.drawable.baseline_filter_list_24),
-                contentDescription = "",
-                modifier = Modifier.size(24.dp),
-                tint = AppTheme.colors.formTitle
-            )
-            Icon(
-                imageVector = Icons.Default.Close,
-                contentDescription = "",
-                modifier = Modifier.size(24.dp),
-                tint = AppTheme.colors.formTitle
-            )
+            if(text.isNotEmpty()) {
+                Icon(
+                    imageVector = Icons.Default.Close,
+                    contentDescription = "",
+                    modifier = Modifier
+                        .size(24.dp)
+                        .clickable {
+                            onText("")
+                        },
+                    tint = AppTheme.colors.formTitle
+                )
+            }
         }
 
     }

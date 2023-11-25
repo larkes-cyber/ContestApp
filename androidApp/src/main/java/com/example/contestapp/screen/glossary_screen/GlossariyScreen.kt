@@ -54,6 +54,7 @@ fun GlossariyScreen(
             .background(AppTheme.colors.background)
             .verticalScroll(scrollState)
     ) {
+        Spacer(modifier = Modifier.height(35.dp))
         Box(modifier = Modifier.fillMaxWidth()) {
             Box(
                 modifier = Modifier.padding(top = 4.dp)

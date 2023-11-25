@@ -213,7 +213,7 @@ fun AddLectureScreen(
                 isIconActive = true,
                 modifier = Modifier.height(40.dp)
             ) {
-                audioLauncher.launch("*/*")
+                audioLauncher.launch("audio/*")
             }
         }
         Box(modifier = Modifier.padding(start = 15.dp)) {
@@ -235,7 +235,7 @@ fun AddLectureScreen(
         if(addLectureUIState.uploadedAudio != null){
             val text = context.getFileName(addLectureUIState.uploadedAudio!!)
             Text(
-                text = "$text.mp3",
+                text = "$text",
                 fontSize = 13.sp,
                 fontWeight = FontWeight.Normal,
                 color = AppTheme.colors.formTitle,
