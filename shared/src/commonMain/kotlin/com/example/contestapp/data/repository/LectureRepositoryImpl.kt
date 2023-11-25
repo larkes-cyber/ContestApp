@@ -60,7 +60,7 @@ class LectureRepositoryImpl(
                     id = resp.id,
                     subject = subject,
                     title = title,
-                    time = 2332332,
+                    time = 12333,
                     shortDescr = resp.short_descr,
                     author = author,
                     isFavorite = false,

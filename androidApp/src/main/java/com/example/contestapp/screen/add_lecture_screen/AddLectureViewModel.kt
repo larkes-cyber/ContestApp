@@ -55,6 +55,20 @@ class AddLectureViewModel @Inject constructor():ViewModel(){
 
     fun onDone(context: Context){
         viewModelScope.launch {
+            _addLectureUIState.value = addLectureUIState.value.copy(error = "", loadingHasStarted = true)
+
+            if(
+                addLectureUIState.value.uploadedAudio == null
+                || addLectureUIState.value.uploadedFile == null
+                || addLectureUIState.value.title.isEmpty()
+                || addLectureUIState.value.author.isEmpty()
+                || addLectureUIState.value.subject.isEmpty()
+                ){
+                _addLectureUIState.value = addLectureUIState.value.copy(error = "Не корректно заполены поля", loadingHasStarted = false)
+                return@launch
+            }
+
+
 
             val inputStream:ByteArray = context.getContentResolver().openInputStream(addLectureUIState.value.uploadedAudio!!)!!.readBytes()
             val imgInputStream:ByteArray = context.getContentResolver().openInputStream(addLectureUIState.value.uploadedFile!!)!!.readBytes()
@@ -64,10 +78,9 @@ class AddLectureViewModel @Inject constructor():ViewModel(){
                 title = addLectureUIState.value.title,
                 byteArray = inputStream,
                 author = addLectureUIState.value.author
-            ).data
-            Log.d("dfgferfgfdf", id.toString())
-            if(id != null) Repositories.lectureRepository().updateLecturePhoto(id, imgInputStream)
-            _addLectureUIState.value = addLectureUIState.value.copy(hasBeenDone = true)
+            )
+            if(id.data != null) Repositories.lectureRepository().updateLecturePhoto(id.data!!, imgInputStream)
+            _addLectureUIState.value = addLectureUIState.value.copy(hasBeenDone = true, loadingHasStarted = false)
         }
     }
 

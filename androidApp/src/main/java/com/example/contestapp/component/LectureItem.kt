@@ -143,16 +143,6 @@ fun LectureItem(
                             fontWeight = FontWeight.Normal,
                             color = AppTheme.colors.thirdTitle
                         )
-                        Row(
-                            horizontalArrangement = Arrangement.spacedBy(7.dp)
-                        ) {
-                            Icon(
-                                imageVector = if(lecture.isFavorite) Icons.Default.Favorite else Icons.Outlined.FavoriteBorder,
-                                contentDescription = "",
-                                modifier = Modifier.size(22.dp),
-                                tint = Color(0xFFE64646),
-                            )
-                        }
                     }
                 }
                 Spacer(modifier = Modifier.height(20.dp))

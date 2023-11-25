@@ -23,6 +23,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -91,11 +92,12 @@ fun AddLectureScreen(
             .background(AppTheme.colors.background)
             .verticalScroll(scrollState)
     ) {
+        Spacer(modifier = Modifier.height(35.dp))
         Box(modifier = Modifier.fillMaxWidth()) {
             Box(
                 modifier = Modifier.padding(top = 4.dp)
             ) {
-                IconButton(onClick = {  }) {
+                IconButton(onClick = { navController.navigate(Screen.LecturesScreen.route) }) {
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
                         contentDescription = "",
@@ -154,7 +156,7 @@ fun AddLectureScreen(
 
         Box(
             modifier = Modifier
-                .padding(top = 26.dp, bottom = 46.dp)
+                .padding(top = 26.dp, bottom = 20.dp)
                 .padding(horizontal = 16.dp)
         ) {
             AppPrimaryButton(
@@ -214,6 +216,21 @@ fun AddLectureScreen(
                 audioLauncher.launch("*/*")
             }
         }
+        Box(modifier = Modifier.padding(start = 15.dp)) {
+            if(addLectureUIState.loadingHasStarted){
+                CircularProgressIndicator()
+            }
+            if(addLectureUIState.error.isNotEmpty()){
+                Text(
+                    text = addLectureUIState.error,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Normal,
+                    color = Color.Red
+                )
+            }
+        }
+
+
         Spacer(modifier = Modifier.height(6.dp))
         if(addLectureUIState.uploadedAudio != null){
             val text = context.getFileName(addLectureUIState.uploadedAudio!!)

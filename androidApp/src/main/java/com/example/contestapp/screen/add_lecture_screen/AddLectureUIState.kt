@@ -9,5 +9,7 @@ data class AddLectureUIState(
     val title:String = "",
     val subject:String = "",
     val uploadedAudio:Uri? = null,
-    val hasBeenDone:Boolean = false
+    val hasBeenDone:Boolean = false,
+    val loadingHasStarted:Boolean = false,
+    val error:String = ""
 )

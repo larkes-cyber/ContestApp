@@ -27,7 +27,7 @@ fun DataLecture.toLecture():Lecture{
     return Lecture(
         id = id,
         title = title,
-        time = time.toString(),
+        time = "25.11.23",
         descr = descr,
         shortDescr = shortDescr,
         author = author,
