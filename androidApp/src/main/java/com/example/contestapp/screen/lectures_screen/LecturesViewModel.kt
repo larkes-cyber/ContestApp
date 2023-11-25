@@ -20,6 +20,21 @@ class LecturesViewModel @Inject constructor():ViewModel() {
     private val _lecturesUIStare = MutableStateFlow(LecturesUIState())
     val lecturesUIStare:StateFlow<LecturesUIState> = _lecturesUIStare
 
+    private val _filterUIState = MutableStateFlow(FilterUIState())
+    val filterUIState:StateFlow<FilterUIState> = _filterUIState
+
+
+    fun onSymbs(symbs:String){
+        viewModelScope.launch {
+            _filterUIState.value = filterUIState.value.copy(symbs = symbs)
+            val lectures = Repositories.lectureRepository().searchForLecture(symbs)
+            _lecturesUIStare.value = lecturesUIStare.value.copy(lectures = lectures)
+        }
+    }
+
+    fun switchFilter(filter:Int){
+        _filterUIState.value = filterUIState.value.copy(selectedFilter = filter)
+    }
 
     fun getLectures(){
         viewModelScope.launch {
@@ -27,6 +42,7 @@ class LecturesViewModel @Inject constructor():ViewModel() {
             _lecturesUIStare.value = LecturesUIState(lectures =   Repositories.lectureRepository().getLectures())
         }
     }
+
 
     fun getLectureImage(id:String, imageState: MutableState<ImageBitmap?>){
         viewModelScope.launch {

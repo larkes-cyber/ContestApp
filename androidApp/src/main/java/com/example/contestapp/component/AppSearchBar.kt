@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.Icon
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
@@ -58,7 +59,18 @@ fun AppSearchBar(
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Normal,
                     color = AppTheme.colors.formTitle
-                )
+                ),
+                decorationBox = {
+                    if(text.isEmpty()){
+                        Text(
+                            "Поиск",
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Normal,
+                            color = AppTheme.colors.formTitle
+                        )
+                    }
+                    it()
+                }
             )
         }
         Row(horizontalArrangement = Arrangement.spacedBy(26.dp)) {

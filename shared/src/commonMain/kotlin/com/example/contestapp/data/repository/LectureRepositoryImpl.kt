@@ -94,11 +94,9 @@ class LectureRepositoryImpl(
 
     override suspend fun searchForLecture(symbols: String):List<Lecture> {
         return getLectures().filter {
-                        it.author.contains(symbols)
-                        || it.shortDescr.contains(symbols)
-                        || it.title.contains(symbols)
-                        || it.subject.contains(symbols)
-                        || it.title.contains(symbols)
+
+                         it.title.contains(symbols, ignoreCase = true)
+
         }
     }
 }

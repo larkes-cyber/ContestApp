@@ -38,6 +38,7 @@ fun LecturesScreen(
 ) {
 
     val lecturesUIState by viewModel.lecturesUIStare.collectAsState()
+    val filterUIState by viewModel.filterUIState.collectAsState()
 
     LaunchedEffect(Unit){
         viewModel.getLectures()
@@ -68,9 +69,9 @@ fun LecturesScreen(
                 .height(42.dp)
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(8.dp)),
-            text = "Поиск",
+            text = filterUIState.symbs,
             onText = {
-
+                viewModel.onSymbs(it)
             }
         )
         Spacer(modifier = Modifier.height(12.dp))
