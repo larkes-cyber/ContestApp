@@ -1,4 +1,4 @@
-# Transcription application
+# Transcription Contest App
 An application that creates a transcribed text based on an audio recording of lectures, highlighting complex terms in the text and writing them down in a glossary. The resulting synopsis includes a glossary describing complex topics in the lecture.
 
 ## Tech
